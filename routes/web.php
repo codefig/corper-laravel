@@ -14,13 +14,15 @@
 Route::get('/', function () {
 	return view('welcome');
 });
+Route::prefix('/admin')->group(function () {
 
-Route::get('/adminLogin', 'Auth\AdminController@showLogin')->name('admin.login');
-Route::get('/agentLogin', 'Auth\AgentController@showLogin')->name('agent.login');
-Route::get('/login', 'Auth\UserController@showLogin')->name('user.login');
+	Route::get('/login', 'Auth\AdminController@showLogin')->name('admin.login');
+});
 
-// Route::group(['prefix' => 'admin'], function () {
-// 	//
-// });
+Route::prefix('/agent')->group(function () {
+	Route::get('/login', 'Auth\AgentController@showLogin')->name('agent.login');
+});
 
-// Route::prefix('/students')->group(function () {
+Route::prefix('/user')->group(function () {
+	Route::get('/login', 'Auth\UserController@showLogin')->name('user.login');
+});
