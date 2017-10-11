@@ -58,21 +58,23 @@ class Handler extends ExceptionHandler {
 
 		//not json request
 		//
-		$user_guard = array_get($exception->guards(), 0);
+		//
+		$user_guard = array_get($exception->guards(), 0); //get the user guard
 
 		switch ($user_guard) {
-		case 'agent':
+		case 'admin':
 			// code...
+			$login = 'admin.login';
+			break;
+		case 'agent':
 			$login = "agent.login";
 			break;
-		case 'admin':
-			$login = "admin.login";
 
 		default:
 			// code...
-			$login = "login";
+			$login = 'user.login';
 			break;
 		}
-		return redirect()->guest(route('login'));
+		return redirect()->guest(route($login));
 	}
 }
