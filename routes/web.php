@@ -25,4 +25,5 @@ Route::prefix('/agent')->group(function () {
 
 Route::prefix('/user')->group(function () {
 	Route::get('/login', 'Auth\UserController@showLogin')->name('user.login');
+	Route::get('/profile', 'Auth\UserController@showProfile')->name('user.profile');
 });

@@ -1,0 +1,266 @@
+@extends('layouts.header')
+
+
+@section('styles')
+   <style>
+       #homeBody{
+        /*background-color:red;*/
+        height:600px;
+        margin-top:30px;
+        padding:20px;
+        border-radius:5px;
+        border:1px solid #00b294;
+       }
+       #leftHomeDiv{
+        /*background-color:green;*/
+        width:30%;
+        height: 100%;
+        padding:10px;
+       }
+       #rightHomeDiv{
+        /*background-color:#4c4a48;*/
+        width:65%;
+        height:100%;
+        border:1px solid #00b294;
+        border-radius: 3px;
+        /*color:#fff;*/
+        padding:10px;
+       }
+
+       #picturePane{
+        border-radius:5px;
+        /*background-color:#fff;*/
+        height:50%;
+        margin-bottom: 5px;
+       }
+
+       #linksPane{
+        border-radius:5px;
+          background-color:#4c4a48;
+       }
+
+       a:hover{
+          background-color:#00b294 !important;
+       }
+      #sectionBanner {
+        margin-bottom:5px;
+        /*background-color:#4c4a48;*/
+        font-family: "Lato Bold";
+      }
+
+
+   </style>
+@endsection
+
+
+@section('title')
+   Corper's  DashBoard
+@endsection
+
+
+@section('firstLink')
+  <a href="" id="studentLogin"><span class='fa fa-user-o'></span> Logout</a>
+@endsection
+
+@section('pageBody')
+
+
+  <div class="container" id="homeBody">
+    <div class="pull-left" id="leftHomeDiv">
+        <div id="picturePane">
+
+          <img id="user-profile" src="" class="img-responsive img-rounded" alt="Image">
+        </div>
+
+        <div id="linksPane">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href=""><span class="fa fa-navicon"></span> Home</a></li>
+
+              <li><a href=""><span class='fa fa-book'></span> Courses</a></li>
+
+              <li><a href=""><span class='fa fa-book'></span> Course Materials</a></li>
+
+             <li><a href=""><span class="fa fa-file-text"></span> Assignments</a></li>
+
+               <li><a href=""><span class="fa fa-upload"></span> My submissions</a></li>
+
+          </ul>
+        </div>
+    </div>
+    <div class="pull-right" id="rightHomeDiv" style="overflow:scroll">
+
+      <div id="sectionBanner" class="container">
+      <center>
+        <h2> <u> My Profile </u></h2>
+      </center></div>
+
+      {{-- <form method="post" action="{{ route('students.profile.update') }}"> --}}
+      <div id="sectionBody">
+
+         <div class="form-group">
+          <label> Full Name:</label>
+          <input type="text" class="form-control" id="fullname" name="fullname" value=""/>
+        </div>
+
+            <div class="form-group">
+               <label>Matric Number: </label>
+               <input type="text" class="form-control" id="matricno" name="matricno" value=""/>
+            </div>
+
+            <div class="form-group">
+               <label>Email </label>
+               <input type="text" class="form-control" id="email" name="email" value=""/>
+            </div>
+
+            <div class="form-group">
+               <label for="department">Department / Area of Interest: </label>
+               <select name='department_id' id="department_id" class="form-control">
+
+               </select>
+            </div>
+
+                  <div class="MyContainer">
+              <div id="nextContainer">
+                <div class="well" id="wellHeader">Update Profile Picture
+                &nbsp;
+                </div> <!--end of wellHeader -->
+
+                 <center>
+                 <span id="loader" style="display:none"><img src="{{URL::to('images/loader.gif')}}" height="16" width="16">Loading...</span>
+                 <div id="picFrame" class="alert alert-danger"></div><!--end of the #picframe -->
+                  <form style="display:none" class="form" method="post" action="" enctype="multipart/form-data">
+                      <input type="file" id="imageInput" accept="image/*" name="images"/>
+                      <input type="hidden" name="_token" id="token" value='{{ Session::token() }}'>
+                      <input type="submit" name="imageSubmit" id="imageinputSubmit" value="upload"/>
+                  </form>
+                      <button type="" style="width:100%;margin-bottom:10px;" class="btn btn-success" name="imageSubmit" id="imageSubmit">
+                        <span class="fa fa-photo"></span> Update Photo
+                      </button>
+                      <br/>
+                  </center>
+
+            </div><!--end of nextContainer-->
+
+
+            <div class="form-group">
+               <input type="submit" style="width:100%" name="submit" id='updateBtn' class="btn btn-info" value="Update"/>
+            </div>
+
+
+         </div>
+         {{-- </form> --}}
+
+         <div id="validation-errors" class="alert"></div>
+
+
+
+
+    </div>
+  </div>
+<script type="text/javascript">
+$('document').ready(function()
+{
+
+var uploadbtn = $('#imageSubmit');
+var fileinput = $('#imageInput');
+var formsubmit = $('#imageinputSubmit');
+var loader = $('#loader');
+var output = $('#picFrame');
+var form = $('form');
+output.hide();
+// form.hide();
+uploadbtn.click(function(e)
+{
+   fileinput.click();
+})
+
+fileinput.change(function(e)
+{
+    var value = $(this).val();
+    if(value != ''){
+      formsubmit.click();
+      console.log("nice value");
+    }
+    else{
+      e.preventDefault();
+    }
+})
+
+
+formsubmit.on('click', function(e){
+  // e.preventDefault();
+  console.log("that clicked event");
+    form.ajaxForm({
+
+      beforeSend: function(){
+
+        loader.show();
+        $('#imageinputSubmit').attr('disabled','disabled');
+      },
+      success: function(result){
+        // $('#picFrame').result();
+        console.log(result);
+        if(result['images'])
+        {
+          output.html(result['images']);
+        }
+        else{
+
+         $('#user-profile').attr('src', result);
+          output.html(result);
+          loader.hide();
+          form.resetForm();
+          formsubmit.removeAttr('disabled');
+          // uploadbtn.hide()
+        }
+
+      },
+
+      error: function(err){
+        output.html("Error: " + err);
+       formsubmit.removeAttr('disabled');
+       console.log(err);
+      },
+
+    })
+})
+
+
+$('#updateBtn').click(function(event){
+
+   var fullname = $('#fullname').val();
+   var matricno = $('#matricno').val();
+   var email = $('#email').val();
+   var department_id = $('#department_id').val();
+   var token = "{{ Session::token() }}";
+   var route = "";
+
+   //then perform the ajax request to update the profile
+   $.post(route,
+    {
+      _token : token,
+      fullname : fullname,
+      email : email,
+      department_id : department_id,
+      matricno : matricno,
+    }, function(result)
+   {
+       console.log(result);
+
+       if(result['errors']){
+          console.log('there was an error');
+          console.log(result['errors'].toString());
+          $('#validation-errors').addClass('alert-danger');
+          $('#validation-errors').html(result['errors'].toString());
+       }
+       $('#validation-errors').addClass('alert-success');
+       $('#validation-errors').html(result['success'].toString());
+
+   })
+})
+
+})
+
+</script>
+@endsection()
+
