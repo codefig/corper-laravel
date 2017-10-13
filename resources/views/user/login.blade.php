@@ -31,7 +31,7 @@
 
 			<center>
 		<div class="container" id="loginBody">
-					<form method="post" action="">
+					<form method="post" action="{{ route('user.login.submit') }}">
 
 					<div class="form-group">
 						<span class="fa fa-institution fa-4x">Corper's Login</span>

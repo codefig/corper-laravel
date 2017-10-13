@@ -241,11 +241,24 @@
 		<div class="modal fade" id="signUpModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
+
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title">Login</h4>
 					</div>
 					<div class="modal-body">
+
+						<form method="post" action="{{ route('user.signup.submit') }}">
+
+    					<div class="form-group">
+    						<label style="color:#000 !important;"> First name </label>
+    						<input type="text" class="form-control" id="firstname" name='firstname' />
+    					</div>
+
+    					<div class="form-group">
+    						<label style="color:#000 !important;"> Lastname </label>
+    						<input type="text" class="form-control" id="lastname" name="lastname" />
+    					</div>
 
 						<div class="form-group">
 							<label style="color:#000 !important;"> Email </label>
@@ -256,15 +269,24 @@
 							<label style="color:#000 !important;"> Password </label>
 							<input type="password" class="form-control" id="password" style="background-color:#fff !important;" />
 						</div>
+					</div>
 
+					<div class="alert alert-danger" id="errorOutput" style="margin:10px;">
 					</div>
+
 					<div class="modal-footer">
+						<input type="hidden" value="{{ Session::token() }}" name="_token" id="token" />
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
+						<button type="button" class="btn btn-primary" id="submitBtn">Submit</button>
 					</div>
+
+				</form>
 				</div>
 			</div>
 		</div>
+
+
+
 	</footer>
 
 
@@ -282,9 +304,37 @@
 	<script type="text/javascript">
 		$('document').ready(function(){
 			// alert("welcome to the webpage");
+			$('#errorOutput').hide();
+			var token = "{{ Session::token() }}";
+			var route = "{{ route('user.signup.submit') }}";
 			$('#signUpBtn').click(function(event){
 				event.preventDefault();
 				$('#signUpModal').modal();
+			});
+
+
+			$('#submitBtn').click(function(e){
+				// console.log('that was function');
+					$('#errorOutput').html("");
+				$.post(route, {
+					_token : token,
+					firstname : $('#firstname').val(),
+					lastname : $('#lastname').val(),
+					email : $('#email').val(),
+					password : $('#password').val(),
+				}, function(result){
+					console.log(result);
+					if(result['success']){
+						window.location = "{{ route('user.home') }}";
+					}
+					else{
+							var errLength = result['errors'].length;
+					        for (var i = 0; i < errLength; i++) {
+					          $('#errorOutput').append('<li>' + result['errors'][i] + "</li>");
+					        }
+					        $('#errorOutput').show();
+					}
+				})
 			})
 		})
 	</script>

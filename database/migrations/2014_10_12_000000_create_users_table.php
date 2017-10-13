@@ -17,9 +17,12 @@ class CreateUsersTable extends Migration {
 			$table->string('lastname');
 			$table->string('email')->unique();
 			$table->string('password');
+			$table->integer('is_applied');
+			$table->integer('is_posted');
+			$table->string('batch_id');
 			$table->integer('picture_id');
 			$table->string('lga');
-			$table->string('state');
+			$table->string('state')->nullable();
 			$table->integer('state_id');
 			$table->string('dob');
 			$table->string('institution');
@@ -27,6 +30,7 @@ class CreateUsersTable extends Migration {
 			$table->string('matricno');
 			$table->string('religion');
 			$table->integer('sch_state_id');
+			$table->string('field_of_interest');
 			$table->string('hobbies');
 			$table->string('first_state_id');
 			$table->string('second_state_id');
