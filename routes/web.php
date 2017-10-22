@@ -27,8 +27,12 @@ Route::prefix('/user')->group(function () {
 	Route::post('/signup', 'Auth\UserController@signupSubmit')->name('user.signup.submit');
 	Route::get('/login', 'Auth\UserController@showLogin')->name('user.login');
 	Route::post('/login', 'Auth\UserController@submitLogin')->name('user.login.submit');
-	Route::get('/profile', 'Auth\UserController@showProfile')->name('user.profile');
+	Route::get('/profile', 'UserController@showProfile')->name('user.profile');
+	Route::post('/passport/update', 'UserController@updatePassport')->name('user.passport.update');
+	Route::post('/profile/update', 'UserController@updateProfile')->name('user.profile.update');
 	Route::get('/home', 'UserController@showHome')->name('user.home');
+	Route::get('/status', 'UserController@showStatus')->name('user.status');
+	Route::get('/apply', 'UserController@postingApply')->name('user.posting.apply');
 	Route::get('/logout', 'UserController@logout')->name('user.logout');
 });
 

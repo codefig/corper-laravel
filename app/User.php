@@ -14,7 +14,7 @@ class User extends Authenticatable {
 	 * @var array
 	 */
 	protected $fillable = [
-		'firstname', 'lastname', 'email', 'password', 'is_applied', 'is_posted', 'batch_id', 'picture_id', 'lga', 'state', 'state_id', 'dob', 'institution', 'department', 'matricno', 'religion', 'sch_state_id', 'field_of_interest', 'hobbies', 'first_state_id', 'second_state_id', 'third_state_id', 'corper_token', 'token_id', 'posted_state_id', 'posted_details',
+		'firstname', 'lastname', 'email', 'password', 'is_updated', 'is_applied', 'is_posted', 'batch_id', 'picture_id', 'lga', 'state', 'state_id', 'dob', 'institution', 'department', 'matricno', 'religion', 'sch_state_id', 'field_of_interest', 'hobbies', 'first_state_id', 'second_state_id', 'third_state_id', 'corper_token', 'token_id', 'posted_state_id', 'posted_details',
 	];
 
 	/**
@@ -28,5 +28,14 @@ class User extends Authenticatable {
 
 	public function photo() {
 		return $this->belongsTo('App\Photo', 'picture_id');
+	}
+
+	public function state() {
+		return $this->belongsTo('App\State', 'state_id');
+	}
+
+	public function stateoforigin() {
+		$state = State::where('id', $this->id)->get()->first();
+		return $state;
 	}
 }

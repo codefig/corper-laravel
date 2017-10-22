@@ -54,6 +54,7 @@ class UserController extends Controller {
 			return response()->json(['errors' => $validator->errors()->all()]);
 		} else {
 			$request['password'] = bcrypt($request['password']);
+			$request['is_updated'] = 0;
 			$request['is_applied'] = 0;
 			$request['is_posted'] = 0;
 			$request['batch_id'] = 0;

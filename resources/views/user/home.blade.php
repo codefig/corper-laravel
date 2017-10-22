@@ -76,9 +76,15 @@
             <ul class="nav nav-pills nav-stacked">
 
               <li><a href=""><span class='fa fa-book'></span> Home </a></li>
-              <li><a href=""><span class='fa fa-book'></span> Profile</a></li>
+              <li><a href="{{ route('user.profile') }}"><span class='fa fa-book'></span> Profile
+                @if ($user->is_updated==0)
+                  <span class="label label-danger">Not Updated </span>
+                @else
+                  <span class="label label-primary">Updated </span>
+                @endif
+              </a></li>
 
-              <li><a href=""><span class='fa fa-book'></span> View Posting Status</a></li>
+              <li><a href="{{ route('user.status') }}"><span class='fa fa-book'></span> View Posting Status</a></li>
 
              <li><a href=""><span class="fa fa-file-text"></span> Extra Information</a></li>
 
@@ -98,9 +104,16 @@
       <div id="sectionBody">
 
 
-        {{ $user }}
         <br>
-        <p> Photo </p> {{ $user->photo->server_filename}}
+
+       <center><h3>For a successful Application process the following are the steps to follow </h3></center>
+
+
+       <ul class="list-group">
+         <li class="list-group-item"><strong>1. Update Your profile Information with the valid details and passport photograph</strong></li>
+         <li class="list-group-item"><strong>2. Click on the Apply link to send an application request </strong></li>
+         <li class="list-group-item"><strong>3. Copy your <strong>Token</strong> and await your Batch information and posted State </strong></li>
+       </ul>
 
 
     </div>

@@ -69,12 +69,12 @@
     <div class="pull-left" id="leftHomeDiv">
         <div id="picturePane">
 
-          <img id="user-profile" src="" class="img-responsive img-rounded" alt="Image">
+          <img id="user-profile" src="{{ URL::to($user->photo->server_filename) }}" class="img-responsive img-rounded" alt="Image">
         </div>
 
         <div id="linksPane">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href=""><span class="fa fa-navicon"></span> Home</a></li>
+              <li><a href="{{ route('user.home') }}"><span class="fa fa-navicon"></span> Home</a></li>
 
               <li><a href=""><span class='fa fa-book'></span> Courses</a></li>
 
@@ -97,29 +97,105 @@
       {{-- <form method="post" action="{{ route('students.profile.update') }}"> --}}
       <div id="sectionBody">
 
+        <form method="post" action="{{ route('user.profile.update') }}">
          <div class="form-group">
-          <label> Full Name:</label>
-          <input type="text" class="form-control" id="fullname" name="fullname" value=""/>
+          <label> Firstname </label>
+          <input type="text" class="form-control" id="firstname" name="firstname" value="{{ $user->firstname }}"/>
+        </div>
+
+         <div class="form-group">
+          <label> lastname </label>
+          <input type="text" class="form-control" id="lastname" name="lastname" value="{{ $user->lastname }}"/>
+        </div>
+
+        <div class="form-group">
+          <label>Date of Birth eg. (20-13-1990)</label>
+          <input type="text" class="form-control" id="dob" name="dob" value="{{ $user->dob }}" />
+        </div>
+        <div class="form-group">
+          <label>Local Government Area </label>
+          <input type="text" class="form-control" id="lga" name="lga" value="{{ $user->lga }}"/>
+        </div>
+
+        <div class="form-group">
+          <label>State of Origin</label>
+               <select name="state_id" id="state_id" class="form-control">
+                @if (count($states) > 0)
+                  @foreach ($states as $state)
+                    <option value="{{ $state->id }}" {{ ($user->state_id == $state->id) ? "selected" : "" }}> {{ $state->name}}</option>
+                  @endforeach
+                @endif
+              </select>
+        </div>
+
+        <div class="form-group">
+          <label>Religion </label>
+          <input type="text" class="form-control" id="religion" name="religion" value="{{ $user->religion }}" />
         </div>
 
             <div class="form-group">
                <label>Matric Number: </label>
-               <input type="text" class="form-control" id="matricno" name="matricno" value=""/>
+               <input type="text" class="form-control" id="matricno" name="matricno" value="{{ $user->matricno }}"/>
             </div>
 
             <div class="form-group">
-               <label>Email </label>
-               <input type="text" class="form-control" id="email" name="email" value=""/>
+               <label for="department">Department</label>
+               <input type="text" class='form-control' name="department" id="department" value="{{ $user->department }}">
             </div>
 
             <div class="form-group">
-               <label for="department">Department / Area of Interest: </label>
-               <select name='department_id' id="department_id" class="form-control">
-
-               </select>
+              <label>Name of Institution </label>
+              <input type="text" class="form-control" name="institution" id="institution" value="{{ $user->institution }}"/>
             </div>
 
-                  <div class="MyContainer">
+
+            <div class="form-group">
+              <label>Hobbies </label>
+              <input type="text" class="form-control" name="hobbies" id="hobbies" value="{{ $user->hobbies }}"/>
+            </div>
+
+
+            <div class="form-group">
+              <label>First State of Choice </label>
+              <select class="form-control" name="first_state_id" id="first_state_id">
+             @if (count($states) > 0)
+                  @foreach ($states as $state)
+                    <option value="{{ $state->id }}" {{ ($user->first_state_id == $state->id) ? "selected" : "" }}> {{ $state->name}}</option>
+                  @endforeach
+                @endif
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Second State of Choice </label>
+              <select class="form-control" name="second_state_id" id="second_state_id">
+                  @if (count($states) > 0)
+                  @foreach ($states as $state)
+                    <option value="{{ $state->id }}" {{ ($user->second_state_id == $state->id) ? "selected" : "" }}> {{ $state->name}}</option>
+                  @endforeach
+                @endif
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Third State of Choice </label>
+              <select class="form-control" name="third_state_id" id="third_state_id">
+              @if (count($states) > 0)
+                  @foreach ($states as $state)
+                    <option value="{{ $state->id }}" {{ ($user->third_state_id == $state->id) ? "selected" : "" }}> {{ $state->name}}</option>
+                  @endforeach
+                @endif
+              </select>
+            </div>
+
+
+            <div class="form-group">
+              <input type="hidden" name="_token" value="{{ Session::token() }}" />
+              <input type="submit" name="submit" style="display:none;" class="btn btn-primary" id="updateFormSubmit">
+            </div>
+
+          </form>
+            <div class="MyContainer">
               <div id="nextContainer">
                 <div class="well" id="wellHeader">Update Profile Picture
                 &nbsp;
@@ -128,13 +204,13 @@
                  <center>
                  <span id="loader" style="display:none"><img src="{{URL::to('images/loader.gif')}}" height="16" width="16">Loading...</span>
                  <div id="picFrame" class="alert alert-danger"></div><!--end of the #picframe -->
-                  <form style="display:none" class="form" method="post" action="" enctype="multipart/form-data">
+                  <form style="display:none" id="pictureForm" class="form" method="post" action="{{ route('user.passport.update') }}" enctype="multipart/form-data">
                       <input type="file" id="imageInput" accept="image/*" name="images"/>
                       <input type="hidden" name="_token" id="token" value='{{ Session::token() }}'>
                       <input type="submit" name="imageSubmit" id="imageinputSubmit" value="upload"/>
                   </form>
                       <button type="" style="width:100%;margin-bottom:10px;" class="btn btn-success" name="imageSubmit" id="imageSubmit">
-                        <span class="fa fa-photo"></span> Update Photo
+                        <span class="fa fa-photo"></span> Upload Passportss
                       </button>
                       <br/>
                   </center>
@@ -143,14 +219,25 @@
 
 
             <div class="form-group">
-               <input type="submit" style="width:100%" name="submit" id='updateBtn' class="btn btn-info" value="Update"/>
+               <input type="submit" style="width:100%" id='updateBtn' class="btn btn-info" value="Update"/>
             </div>
 
 
          </div>
          {{-- </form> --}}
 
-         <div id="validation-errors" class="alert"></div>
+         <div id="validation-errors" class="alert alert-danger" style="display:{{ (count($errors) > 0) ? "block":"none" }};">
+          @if(count($errors)> 0)
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          @endif
+         </div>
+
+
+         <div class="alert alert-success" style="display:{{ (Session::has('success_message'))? "block":"none" }}">
+           <strong>{{ Session::get('success_message') }} </strong>
+         </div>
 
 
 
@@ -166,7 +253,8 @@ var fileinput = $('#imageInput');
 var formsubmit = $('#imageinputSubmit');
 var loader = $('#loader');
 var output = $('#picFrame');
-var form = $('form');
+// var form = $('form');
+var form = $('#pictureForm');
 output.hide();
 // form.hide();
 uploadbtn.click(function(e)
@@ -228,35 +316,9 @@ formsubmit.on('click', function(e){
 
 $('#updateBtn').click(function(event){
 
-   var fullname = $('#fullname').val();
-   var matricno = $('#matricno').val();
-   var email = $('#email').val();
-   var department_id = $('#department_id').val();
-   var token = "{{ Session::token() }}";
-   var route = "";
 
-   //then perform the ajax request to update the profile
-   $.post(route,
-    {
-      _token : token,
-      fullname : fullname,
-      email : email,
-      department_id : department_id,
-      matricno : matricno,
-    }, function(result)
-   {
-       console.log(result);
+    $('#updateFormSubmit').click();
 
-       if(result['errors']){
-          console.log('there was an error');
-          console.log(result['errors'].toString());
-          $('#validation-errors').addClass('alert-danger');
-          $('#validation-errors').html(result['errors'].toString());
-       }
-       $('#validation-errors').addClass('alert-success');
-       $('#validation-errors').html(result['success'].toString());
-
-   })
 })
 
 })
