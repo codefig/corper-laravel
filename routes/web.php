@@ -17,6 +17,10 @@ Route::get('/', function () {
 Route::prefix('/admin')->group(function () {
 
 	Route::get('/login', 'Auth\AdminController@showLogin')->name('admin.login');
+	Route::post('/login/submit', 'Auth\AdminController@loginSubmit')->name('admin.login.submit');
+	Route::get('/home', 'AdminController@showHome')->name('admin.home');
+
+	Route::get('/logout', 'AdminController@logout')->name('admin.logout');
 });
 
 Route::prefix('/agent')->group(function () {

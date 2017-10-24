@@ -97,8 +97,9 @@ class UserController extends Controller {
 	public function postingApply() {
 		// return "thanks for applying ";
 		$user = Auth::user();
-		$user->update(['is_applied' => 1]);
-		Session::flash('success_message', "Thanks for Applying, please check in back to view your posted State and Centre.");
+		$token = "NYSC-" . time() . $user->id;
+		$user->update(['is_applied' => 1, 'corper_token' => $token]);
+		Session::flash('success_message', "Thanks for Applying, Your token-id is " . $token . " please check in back to view your posted State and Centre.");
 		return redirect()->back();
 	}
 

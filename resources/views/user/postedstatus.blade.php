@@ -138,11 +138,24 @@
               <td>Institution Attended : </td>
               <td>{{ $user->institution }}</td>
             </tr>
+
+            @if ($user->corper_token && ($user->is_applied == 1))
+              <tr>
+                <td>Token ID : </td>
+                <td> {{ $user->corper_token }} </td>
+              </tr>
+            @endif
           </tbody>
         </table>
 
         <div class="form-group">
-          <a href="{{ route('user.posting.apply') }}" class="btn btn-success">Apply for posting</a>
+          @if ($user->is_applied == 1)
+            {{-- <button class="btn btn-info">Already  applied </button> --}}
+            <span class="label label-danger">Note </span><p>Your posting Application has been sent. please await your postage information </p>
+          @else
+            {{-- false expr --}}
+                <a href="{{ route('user.posting.apply') }}" class="btn btn-success">Apply for posting</a>
+          @endif
         </div>
 
         <div class="alert alert-success" style="display:{{ (Session::has('success_message'))? "block":"none" }}">
