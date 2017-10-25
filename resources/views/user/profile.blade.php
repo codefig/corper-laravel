@@ -150,6 +150,17 @@
 
 
             <div class="form-group">
+              <label> Institution State </label>
+              <select class="form-control" name="sch_state_id">
+                @if (count($states) > 0)
+                  @foreach ($states as $state)
+                    <option value="{{ $state->id }}" {{ ($user->state_id == $state->id) ? "selected" : "" }}> {{ $state->name}}</option>
+                  @endforeach
+                @endif
+              </select>
+            </div>
+
+            <div class="form-group">
               <label>Hobbies </label>
               <input type="text" class="form-control" name="hobbies" id="hobbies" value="{{ $user->hobbies }}"/>
             </div>
@@ -210,7 +221,7 @@
                       <input type="submit" name="imageSubmit" id="imageinputSubmit" value="upload"/>
                   </form>
                       <button type="" style="width:100%;margin-bottom:10px;" class="btn btn-success" name="imageSubmit" id="imageSubmit">
-                        <span class="fa fa-photo"></span> Upload Passportss
+                        <span class="fa fa-photo"></span> Upload Passport Image
                       </button>
                       <br/>
                   </center>

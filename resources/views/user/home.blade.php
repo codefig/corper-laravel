@@ -115,7 +115,6 @@
          <li class="list-group-item"><strong>3. Copy your <strong>Token</strong> and await your Batch information and posted State </strong></li>
        </ul>
 
-
     </div>
   </div>
 <script type="text/javascript">

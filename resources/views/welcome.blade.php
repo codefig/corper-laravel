@@ -42,7 +42,7 @@
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation"><a href="index.html" class="active">Home</a></li>
 								<li role="presentation"><a href="about.html">About Us</a></li>
-								<li role="presentation"><a href="" id="signUpBtn">Login</a></li>
+								<li role="presentation"><a href="" id="signUpBtn">Sign Up</a></li>
 								{{-- <li role="presentation"><a href="services.html">Login</a></li> --}}
 							</ul>
 						</div>
@@ -244,7 +244,7 @@
 
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Login</h4>
+						<h4 class="modal-title">SIGN UP</h4>
 					</div>
 					<div class="modal-body">
 

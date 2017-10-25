@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Batch;
 use App\Photo;
 use App\State;
 use Auth;
@@ -63,8 +64,9 @@ class UserController extends Controller {
 	}
 
 	public function updateProfile(Request $request) {
-		// return "this is the update function ";
-		// return response()->json(['success' => $request->all()]);
+		/*
+			Function Updates the Corper's Profile information
+		*/
 		$user = Auth::user();
 		$this->validate($request, [
 			'firstname' => 'required',
@@ -76,6 +78,7 @@ class UserController extends Controller {
 			'matricno' => 'required',
 			'department' => 'required',
 			'institution' => 'required',
+			'sch_state_id' => 'required',
 			'hobbies' => 'required',
 			'first_state_id' => 'required',
 			'second_state_id' => 'required',
@@ -95,11 +98,54 @@ class UserController extends Controller {
 	}
 
 	public function postingApply() {
-		// return "thanks for applying ";
+
 		$user = Auth::user();
+
+		/** posting logic
+
+		- Create an array of all state id
+		- remove State of birth for user
+		- remove State of Schooling for user
+		- get random value from the state_id_array after the removals.
+		- get the State['value'] and assign as users State;
+
+		 */
+
+		$state_id_array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37);
+		$state_of_origin_id = $user->state_id;
+		$state_of_schooling_id = $user->sch_state_id;
+		$first_choice_state_id = $user->first_state_id;
+		$second_choice_state_id = $user->second_state_id;
+
+		//remove the ids from the state array;
+		$after_removed = array_diff($state_id_array, [
+			$state_of_origin_id,
+			$state_of_schooling_id,
+			$first_choice_state_id,
+			$second_choice_state_id]);
+		$after_removed_values = array_values($after_removed);
+		$randomised_value = $after_removed_values[array_rand($after_removed_values)];
+		$posted_state_id = $randomised_value;
+
+		//do random stuff for the batch too.
+		$batch_id_array = array(1, 2, 3);
+		$random_batch = array_rand($batch_id_array);
+		$batch_id = $batch_id_array[$random_batch];
+
+		//get the state and batch value;
+		$posted_state = State::find($posted_state_id)->name;
+		$posted_batch = Batch::find($batch_id)->name;
+
 		$token = "NYSC-" . time() . $user->id;
-		$user->update(['is_applied' => 1, 'corper_token' => $token]);
-		Session::flash('success_message', "Thanks for Applying, Your token-id is " . $token . " please check in back to view your posted State and Centre.");
+
+		$user->update([
+			'is_applied' => 1,
+			'posted_state_id' => $posted_state_id,
+			'batch_id' => $batch_id,
+			'corper_token' => $token,
+		]);
+
+		Session::flash('success_message', "Thanks for Applying, Your token-id is " . $token . " You are hereby posted to " . $posted_state . " Batch: " . $posted_batch . " Please await your posted Agency.");
 		return redirect()->back();
 	}
 

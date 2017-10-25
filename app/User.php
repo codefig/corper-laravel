@@ -38,4 +38,12 @@ class User extends Authenticatable {
 		$state = State::where('id', $this->id)->get()->first();
 		return $state;
 	}
+
+	public function posted_state() {
+		return $this->belongsTo('App\State', 'posted_state_id');
+	}
+
+	public function batch() {
+		return $this->belongsTo('App\Batch', 'batch_id');
+	}
 }

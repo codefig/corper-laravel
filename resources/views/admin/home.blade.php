@@ -305,7 +305,7 @@
                                     <a href="{{ route('admin.agent.add') }}">Add New Agent </a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">View Agent and Mentees </a>
+                                    <a href="{{ route('admin.agent.view') }}">View Agent and Mentees </a>
                                 </li>
                                 <li>
                                     <a href="notifications.html">Notifications</a>

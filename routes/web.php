@@ -22,6 +22,9 @@ Route::prefix('/admin')->group(function () {
 
 	Route::get('/home', 'AdminController@showHome')->name('admin.home');
 	Route::get('/agent/add', 'AdminController@addAgent')->name('admin.agent.add');
+	Route::post('/agent/add/submit', 'AdminController@agentSubmit')->name('admin.agent.submit');
+
+	Route::get('/agent/view', 'AdminController@viewAgent')->name('admin.agent.view');
 
 });
 

@@ -139,6 +139,16 @@
               <td>{{ $user->institution }}</td>
             </tr>
 
+            <tr>
+              <td> Posted State: </td>
+              <td> {{ $user->posted_state->name }}
+            </tr>
+
+            <tr>
+              <td> Batch </td>
+              <td> {{ $user->batch->name }} </td>
+            </tr>
+
             @if ($user->corper_token && ($user->is_applied == 1))
               <tr>
                 <td>Token ID : </td>
@@ -149,13 +159,24 @@
         </table>
 
         <div class="form-group">
-          @if ($user->is_applied == 1)
-            {{-- <button class="btn btn-info">Already  applied </button> --}}
-            <span class="label label-danger">Note </span><p>Your posting Application has been sent. please await your postage information </p>
-          @else
-            {{-- false expr --}}
-                <a href="{{ route('user.posting.apply') }}" class="btn btn-success">Apply for posting</a>
-          @endif
+
+        @if($user->is_updated == 1)
+
+
+            @if ($user->is_applied == 1)
+              {{-- profile updated and applied before --}}
+              <span class="label label-danger">Note </span><p>Your posting Application has been sent. please await your postage information </p>
+            @else
+              {{-- profile updated but hasnt applied before --}}
+                  <a href="{{ route('user.posting.apply') }}" class="btn btn-success">Apply for posting</a>
+            @endif
+
+        @else
+          {{--profile has not been updated --}}
+
+          <span class="label label-danger">Note</span><p> You have to update Your profile information, so as to be eligible for making a Posting request ! </p>
+
+        @endif
         </div>
 
         <div class="alert alert-success" style="display:{{ (Session::has('success_message'))? "block":"none" }}">

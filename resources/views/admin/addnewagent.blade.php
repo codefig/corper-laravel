@@ -382,9 +382,15 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
 
+                    <form method="post" action="{{ route('admin.agent.submit') }}">
                     <div class="form-group">
                         <label> Agent Name </label>
                         <input type="text" class="form-control" id="agent_name" name="agent_name">
+                    </div>
+
+                    <div class="form-group">
+                        <label> Company Name </label>
+                        <input type="text" class="form-control" id="company_name" name="company_name">
                     </div>
 
                     <div class='form-group'>
@@ -394,10 +400,10 @@
 
                     <div class="form-group">
                         <label> State </label>
-                        <select class='form-control'>
+                        <select class='form-control' name="state_id">
+
                             @if(count($states) > 0)
                                 @foreach ($states as $state)
-
                                  <option value="{{ $state->id }}">{{ $state->name }}</option>
                                 @endforeach
                             @endif
@@ -425,6 +431,22 @@
                       <span class="fa fa-user-o"></span><input type="submit" class="btn btn-primary" value="Add New Agent">
                   </div>
 
+
+              </form>
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger" style="margin:10px">
+                                    @foreach ($errors->all() as $error)
+                                         <li>{{ $error }}</li>
+                                     @endforeach
+                            </div>
+                        @endif
+
+                        @if(Session::has('success_message'))
+                            <div class='alert alert-success'>
+                                <span> {{ Session::get('success_message') }}</span>
+                            </div>
+                        @endif
                 </div>
 
 
