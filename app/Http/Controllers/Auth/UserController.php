@@ -59,15 +59,13 @@ class UserController extends Controller {
 			$request['is_posted'] = 0;
 			$request['batch_id'] = 0;
 			$request['picture_id'] = 0;
-			$request['posted_state_id'] = 0;
-			$request['posted_details'] = " ";
-			$request['matricno'] = " ";
 			$request['lga'] = " ";
 			$request['state'] = " ";
 			$request['state_id'] = 0;
 			$request['dob'] = " ";
 			$request['institution'] = " ";
 			$request['department'] = " ";
+			$request['matricno'] = " ";
 			$request['religion'] = " ";
 			$request['sch_state_id'] = 0;
 			$request['field_of_interest'] = " ";
@@ -77,6 +75,9 @@ class UserController extends Controller {
 			$request['third_state_id'] = 0;
 			$request['corper_token'] = " ";
 			$request['token_id'] = 0;
+			$request['posted_state_id'] = 0;
+			$request['posted_details'] = " ";
+			$request['agent_id'] = 0;
 
 			//insert the photo first
 			$avatar = "nlogonew.png";

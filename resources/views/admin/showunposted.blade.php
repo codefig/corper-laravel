@@ -302,10 +302,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Agents <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ route('admin.agent.add') }}">Add New Agent </a>
+                                    <a href="panels-wells.html">Add New Agent </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.agent.viewall') }}">View All Agents  </a>
+                                    <a href="buttons.html">View Agent and Mentees </a>
                                 </li>
                                 <li>
                                     <a href="notifications.html">Notifications</a>
@@ -326,7 +326,7 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Corper's Corner <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ route('admin.unposted.view') }}">View Awaiting Requests </a>
+                                    <a href="#">View Awaiting Requests </a>
                                 </li>
                                 <li>
                                     <a href="#">View Posted Requests</a>
@@ -380,94 +380,66 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
+                {{-- <div class="col-lg-6 col-md-6"> --}}
+
+            <div class="container">
+
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Passport </th>
+                            <th>Name</th>
+                            <th>Batch</th>
+                            <th>Token-ID</th>
+                            <th>School</th>
+                            <th>Department</th>
+                            <th>Posted State </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @if(count($unposted_corpers) > 0)
+                            <span style="visibility: hidden">{{ $serial_no = 1 }} </span>
+                            @foreach($unposted_corpers as $corper)
+
+                                <tr>
+                                    <td>{{ $serial_no }}</td>
+                                    <td><img class="img-responsive img-rounded" style="height:60px;width:60px;" src="{{ $corper->photo->server_filename }}" alt="passport"></td>
+                                    <td>{{ $corper->firstname ." ". $corper->lastname }}</td>
+                                    <td>{{ $corper->batch->name }}</td>
+                                    <td>{{ $corper->corper_token }}</td>
+                                    <td>{{ $corper->institution }}</td>
+                                    <td>{{ $corper->department}}</td>
+                                    <td>{{ $corper->posted_state()->name }}</td>
+                                    <td><a href="{{ route('admin.unposted.post', $corper->id) }}" class="btn btn-primary">Post</a></td>
+                                </tr>
+                                 <span style="visibility:hidden;">{{  $serial_no++}}</span>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger" style="margin:10px">
+                                    @foreach ($errors->all() as $error)
+                                         <li>{{ $error }}</li>
+                                     @endforeach
                             </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
+                        @endif
+
+                        @if(Session::has('success_message'))
+                            <div class='alert alert-success'>
+                                <span> {{ Session::get('success_message') }}</span>
                             </div>
-                        </a>
-                    </div>
+                        @endif
+            {{-- </div> --}}
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+
+
+
+
             </div>
 
                         <!-- /.panel-body -->

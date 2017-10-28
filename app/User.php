@@ -14,7 +14,7 @@ class User extends Authenticatable {
 	 * @var array
 	 */
 	protected $fillable = [
-		'firstname', 'lastname', 'email', 'password', 'is_updated', 'is_applied', 'is_posted', 'batch_id', 'picture_id', 'lga', 'state', 'state_id', 'dob', 'institution', 'department', 'matricno', 'religion', 'sch_state_id', 'field_of_interest', 'hobbies', 'first_state_id', 'second_state_id', 'third_state_id', 'corper_token', 'token_id', 'posted_state_id', 'posted_details',
+		'firstname', 'lastname', 'email', 'password', 'is_updated', 'is_applied', 'is_posted', 'batch_id', 'picture_id', 'lga', 'state', 'state_id', 'dob', 'institution', 'department', 'matricno', 'religion', 'sch_state_id', 'field_of_interest', 'hobbies', 'first_state_id', 'second_state_id', 'third_state_id', 'corper_token', 'token_id', 'posted_state_id', 'posted_details', 'agent_id',
 	];
 
 	/**
@@ -40,10 +40,19 @@ class User extends Authenticatable {
 	}
 
 	public function posted_state() {
-		return $this->belongsTo('App\State', 'posted_state_id');
+		$state = State::where('id', $this->posted_state_id)->get()->first();
+		return $state;
 	}
 
 	public function batch() {
 		return $this->belongsTo('App\Batch', 'batch_id');
+	}
+
+	public function postedAgent() {
+		$posting = Posting::where('user_id', $this->id)->get()->first();
+		$agent_id = $posting->agent_id;
+		//get the agent
+		$agent = Agent::find($agent_id);
+		return $agent;
 	}
 }

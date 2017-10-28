@@ -138,16 +138,18 @@
               <td>Institution Attended : </td>
               <td>{{ $user->institution }}</td>
             </tr>
+            @if($user->is_applied)
 
-            <tr>
-              <td> Posted State: </td>
-              <td> {{ $user->posted_state->name }}
-            </tr>
+              <tr>
+                <td> Posted State: </td>
+                <td> {{ $user->posted_state()->name }}
+              </tr>
 
-            <tr>
-              <td> Batch </td>
-              <td> {{ $user->batch->name }} </td>
-            </tr>
+              <tr>
+                <td> Batch </td>
+                <td> {{ $user->batch->name }} </td>
+              </tr>
+            @endif
 
             @if ($user->corper_token && ($user->is_applied == 1))
               <tr>
@@ -163,9 +165,15 @@
         @if($user->is_updated == 1)
 
 
-            @if ($user->is_applied == 1)
+            @if ($user->is_applied == 1 && $user->is_posted==0)
               {{-- profile updated and applied before --}}
               <span class="label label-danger">Note </span><p>Your posting Application has been sent. please await your postage information </p>
+
+            @elseif($user->is_applied==1 && $user->is_posted==1)
+               <span class="label label-success">Successfully Posted</span>
+               <p> Your Posted Station is: {{ $user->postedAgent()->company_name }}</p>
+               <p>Administrator : {{ $user->postedAgent()->agent_name }}</p>
+               <p>Address: {{ $user->postedAgent()->address }}</p>
             @else
               {{-- profile updated but hasnt applied before --}}
                   <a href="{{ route('user.posting.apply') }}" class="btn btn-success">Apply for posting</a>

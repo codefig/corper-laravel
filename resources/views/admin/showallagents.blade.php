@@ -302,10 +302,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Agents <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ route('admin.agent.add') }}">Add New Agent </a>
+                                    <a href="panels-wells.html">Add New Agent </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.agent.viewall') }}">View All Agents  </a>
+                                    <a href="buttons.html">View Agent and Mentees </a>
                                 </li>
                                 <li>
                                     <a href="notifications.html">Notifications</a>
@@ -326,7 +326,7 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Corper's Corner <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ route('admin.unposted.view') }}">View Awaiting Requests </a>
+                                    <a href="#">View Awaiting Requests </a>
                                 </li>
                                 <li>
                                     <a href="#">View Posted Requests</a>
@@ -374,100 +374,74 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Admin Dashboard</h1>
+                    <h1 class="page-header">All Agents</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
+
+                   <div class="container">
+                       <div class="table-responsive">
+                           <table class="table table-hover">
+                               <thead>
+                                   <tr>
+                                       <th>SN</th>
+                                       <th>Name</th>
+                                       <th>Company Name</th>
+                                       <th>Address</th>
+                                       <th>State</th>
+                                       <th>Email</th>
+                                       <th>Occupation</th>
+                                       <th>Agent Token</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+
+                                @if(count($agents) > 0)
+                                    @foreach($agents as $agent)
+
+
+                                       <tr>
+                                           <td>1</td>
+                                           <td>{{ $agent->agent_name }}</td>
+                                           <td>{{ $agent->company_name }}</td>
+                                           <td>{{ $agent->address }}</td>
+                                           <td>{{ $agent->state->name}}</td>
+                                           <td>{{ $agent->email }}</td>
+                                           <td>{{ $agent->discipline }}</td>
+                                           <td>{{ $agent->industrial_token }}</td>
+
+                                       </tr>
+                                    @endforeach
+                                @endif
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+
+
+
+
+
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger" style="margin:10px">
+                                    @foreach ($errors->all() as $error)
+                                         <li>{{ $error }}</li>
+                                     @endforeach
                             </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
+                        @endif
+
+                        @if(Session::has('success_message'))
+                            <div class='alert alert-success'>
+                                <span> {{ Session::get('success_message') }}</span>
                             </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                        @endif
+
+
+
+
             </div>
 
                         <!-- /.panel-body -->

@@ -21,10 +21,17 @@ Route::prefix('/admin')->group(function () {
 	Route::get('/logout', 'AdminController@logout')->name('admin.logout');
 
 	Route::get('/home', 'AdminController@showHome')->name('admin.home');
+
+	//admin agent routes
 	Route::get('/agent/add', 'AdminController@addAgent')->name('admin.agent.add');
 	Route::post('/agent/add/submit', 'AdminController@agentSubmit')->name('admin.agent.submit');
 
-	Route::get('/agent/view', 'AdminController@viewAgent')->name('admin.agent.view');
+	Route::get('/agent/view/all', 'AdminController@viewAgents')->name('admin.agent.viewall');
+
+	//admin corpers view
+	Route::get('/unposted/view', 'AdminController@viewUnPostedCorpers')->name('admin.unposted.view');
+	Route::get('/unposted/post/{id}', 'AdminController@postCorper')->name('admin.unposted.post');
+	Route::post('/unposted/post/submit', 'AdminController@postSubmit')->name('admin.unposted.submit');
 
 });
 
