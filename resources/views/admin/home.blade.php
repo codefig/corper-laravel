@@ -329,7 +329,7 @@
                                     <a href="{{ route('admin.unposted.view') }}">View Awaiting Requests </a>
                                 </li>
                                 <li>
-                                    <a href="#">View Posted Requests</a>
+                                    <a href="{{ route('admin.posted.view') }}">View Posted Requests</a>
                                 </li>
                                 <li>
                                     <a href="#">Third Level <span class="fa arrow"></span></a>

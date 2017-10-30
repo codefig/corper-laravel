@@ -374,7 +374,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Unposted Corpers</h1>
+                    <h1 class="page-header">Admin Dashboard</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -395,14 +395,16 @@
                             <th>School</th>
                             <th>Department</th>
                             <th>Posted State </th>
+                            <th>Posted Agency </th>
+                            <th>Agency Admin</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @if(count($unposted_corpers) > 0)
+                        @if(count($posted_corpers) > 0)
                             <span style="visibility: hidden">{{ $serial_no = 1 }} </span>
-                            @foreach($unposted_corpers as $corper)
+                            @foreach($posted_corpers as $corper)
 
                                 <tr>
                                     <td>{{ $serial_no }}</td>
@@ -413,7 +415,9 @@
                                     <td>{{ $corper->institution }}</td>
                                     <td>{{ $corper->department}}</td>
                                     <td>{{ $corper->posted_state()->name }}</td>
-                                    <td><a href="{{ route('admin.unposted.post', $corper->id) }}" class="btn btn-primary">Post</a></td>
+                                    <td>{{ $corper->postedAgent()->company_name }}</td>
+                                    <td>{{ $corper->postedAgent()->agent_name }}</td>
+                                    <td><a href="{{ route('admin.corper.view', $corper->id) }}" class="btn btn-primary">View Profile </a></td>
                                 </tr>
                                  <span style="visibility:hidden;">{{  $serial_no++}}</span>
                             @endforeach

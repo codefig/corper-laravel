@@ -32,6 +32,8 @@ Route::prefix('/admin')->group(function () {
 	Route::get('/unposted/view', 'AdminController@viewUnPostedCorpers')->name('admin.unposted.view');
 	Route::get('/unposted/post/{id}', 'AdminController@postCorper')->name('admin.unposted.post');
 	Route::post('/unposted/post/submit', 'AdminController@postSubmit')->name('admin.unposted.submit');
+	Route::get('/posted/view', 'AdminController@viewPosted')->name('admin.posted.view');
+	Route::get('/corper/profile/view/{id}', 'AdminController@viewCorperProfile')->name('admin.corper.view');
 
 });
 

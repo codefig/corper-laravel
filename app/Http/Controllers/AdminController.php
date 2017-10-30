@@ -100,14 +100,43 @@ class AdminController extends Controller {
 	}
 
 	public function postSubmit(Request $request) {
-		// return $request->all();
-		Posting::create(['user_id' => $request->user_id, 'agent_id' => $request->agent_id]);
+		/*
+			    submit function for attaching/posting
+			    the corper to an agency
+			    1. check if the corper has been previously posted ? update record
+			    2. else create new posting information on her behalf
+		*/
+		$previous_posting = Posting::where('user_id', $request->user_id)->first();
+		if ($previous_posting) {
+			//corper posting record already exist.
+			$previous_posting->update(['user_id' => $request->user_id, 'agent_id' => $request->agent_id]);
+		} else {
+			//create new posting information
+			Posting::create(['user_id' => $request->user_id, 'agent_id' => $request->agent_id]);
+		}
 		$user = User::find($request->user_id);
-		$user->update(['is_posted' => 1]);
+		$user->update(['is_posted' => 1, 'agent_id' => $request->agent_id]);
 
 		Session::flash('success_message', 'Corper has been Attached Successfully');
 		return redirect()->back();
 
+	}
+
+	public function viewPosted(Request $request) {
+		/*
+			   function to view all posted corpers
+		*/
+
+		$posted_corpers = User::where('is_posted', 1)->get();
+		return view('admin.showposted', compact('posted_corpers'));
+
+	}
+
+	public function viewCorperProfile(Request $request, $id) {
+		// return "this is the view profile function ";
+		$user = User::find($id);
+
+		return view('admin.viewcorperprofile', compact('user'));
 	}
 
 }

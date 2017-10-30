@@ -374,52 +374,65 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Unposted Corpers</h1>
+                    <h1 class="page-header">View Corper Profile </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                {{-- <div class="col-lg-6 col-md-6"> --}}
+                <div class="col-lg-6 col-md-6">
 
-            <div class="container">
+                    <div class="form-group">
+                        <img src="{{ URL::to($user->photo->server_filename) }}" alt="image" class="img-rounded img-responsive" style="width:200px;height:200px;">
+                    </div>
 
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>S/N</th>
-                            <th>Passport </th>
-                            <th>Name</th>
-                            <th>Batch</th>
-                            <th>Token-ID</th>
-                            <th>School</th>
-                            <th>Department</th>
-                            <th>Posted State </th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <span>Token-ID:</span><span  class="label label-success">:  {{ $user->corper_token }}</span>
+                    <div class="form-group">
+                        <label> First Name </label>
+                        <input type="text" class="form-control" value="{{ $user->firstname }}" name="fullname">
+                    </div>
 
-                        @if(count($unposted_corpers) > 0)
-                            <span style="visibility: hidden">{{ $serial_no = 1 }} </span>
-                            @foreach($unposted_corpers as $corper)
+                    <div class="form-group">
+                        <label> Last Name </label>
+                        <input type="text" class="form-control" value="{{ $user->lastname }}" name="lastname">
+                    </div>
 
-                                <tr>
-                                    <td>{{ $serial_no }}</td>
-                                    <td><img class="img-responsive img-rounded" style="height:60px;width:60px;" src="{{ $corper->photo->server_filename }}" alt="passport"></td>
-                                    <td>{{ $corper->firstname ." ". $corper->lastname }}</td>
-                                    <td>{{ $corper->batch->name }}</td>
-                                    <td>{{ $corper->corper_token }}</td>
-                                    <td>{{ $corper->institution }}</td>
-                                    <td>{{ $corper->department}}</td>
-                                    <td>{{ $corper->posted_state()->name }}</td>
-                                    <td><a href="{{ route('admin.unposted.post', $corper->id) }}" class="btn btn-primary">Post</a></td>
-                                </tr>
-                                 <span style="visibility:hidden;">{{  $serial_no++}}</span>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
+                    <div class="form-group">
+                        <label> Email </label>
+                        <input  type="text" class="form-control" value="{{ $user->email }}" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label> Date of Birth </label>
+                        <input type="text" class="form-control" value="{{ $user->dob }}" name ="dob">
+                    </div>
+
+                    <div class="form-group">
+                        <label> State of Origin </label>
+                        <input type="text" class="form-control" value="{{$user->stateoforigin()->name}}" name="state">
+                    </div>
+
+                    <div class="form-group">
+                        <label>LocaL Government Area </label>
+                        <input type="text" class="form-control" value="{{$user->lga}}" name="lga">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Institution </label>
+                        <input type="text" class="form-control" value="{{$user->institution}}" name="institution">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Religion </label>
+                        <input type="text" class="form-control" value="{{$user->religion}}"  name="religion">
+                    </div>
+
+                    <div class="form-group">
+                        <label> Hobbies </label>
+                        <input  type="text" class='form-control' value="{{$user->hobbies}}" name="hobbies">
+                    </div>
+
+
 
                         @if (count($errors) > 0)
                             <div class="alert alert-danger" style="margin:10px">
@@ -434,7 +447,6 @@
                                 <span> {{ Session::get('success_message') }}</span>
                             </div>
                         @endif
-            {{-- </div> --}}
                 </div>
 
 

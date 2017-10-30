@@ -50,9 +50,15 @@ class User extends Authenticatable {
 
 	public function postedAgent() {
 		$posting = Posting::where('user_id', $this->id)->get()->first();
+		// return $posting;
 		$agent_id = $posting->agent_id;
-		//get the agent
+
 		$agent = Agent::find($agent_id);
 		return $agent;
+
+	}
+
+	public function agent() {
+		return $this->belongsTo('App\Agent', 'agent_id');
 	}
 }

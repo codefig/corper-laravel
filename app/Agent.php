@@ -13,4 +13,8 @@ class Agent extends Model {
 	public function state() {
 		return $this->belongsTo('App\State', 'state_id');
 	}
+
+	public function users() {
+		return $this->belongsToMany('App\User', 'agent_id');
+	}
 }
