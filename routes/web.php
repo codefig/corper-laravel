@@ -39,6 +39,10 @@ Route::prefix('/admin')->group(function () {
 
 Route::prefix('/agent')->group(function () {
 	Route::get('/login', 'Auth\AgentController@showLogin')->name('agent.login');
+	Route::get('/logout', 'AgentController@logout')->name('agent.logout');
+
+	Route::post('/login/submit', 'Auth\AgentController@submitLogin')->name('agent.login.submit');
+	Route::get('/home', 'AgentController@showHome')->name('agent.home');
 });
 
 Route::prefix('/user')->group(function () {

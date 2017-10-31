@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'Lato Font';
+  src: url("../fonts/Dosis-ExtraLight.ttf"); }
+
+  @font-face {
+  font-family: 'Lato Bold';
+  src: url("../fonts/Lato/Lato-Bold.ttf"); }
+
+    @font-face {
+  font-family: 'Lato Light';
+  src: url("../fonts/Lato/Lato-Light.ttf"); }
+
+   @font-face {
+  font-family: 'Mada Light';
+  src: url("../fonts/Lato/Mada-Light.ttf"); }
+
+
+   @font-face {
+  font-family: 'Roboto Light';
+  src: url("../fonts/Lato/RobotoSlab-Light.ttf"); }
+
+     @font-face {
+  font-family: 'Roboto Light';
+  src: url("../fonts/Lato/RobotoSlab-Bold.ttf"); }
+
+
+#page-header{
+	background-color:#4c4a48;
+	color:#ffc;
+	height: 50px;
+	margin-bottom:3px;
+	font-family: 'Lato Light';
+	border-color:#abcdef;
+}
+.nav a {
+	color:#fff;
+
+}
+
+.nav a:visited{
+	background-color:#00b294;;
+}
+
+#page-slider{
+	/*background-color:#00b294;*/
+	height:600px;
+	/*border-bottom:1px solid yellow;*/
+	margin-bottom: 5px;
+}
+
+#page-intro{
+	background-color:#fff;
+	height:550px;
+	margin-top: 5px;
+	font-family:'Lato Light';
+	/*border-top:1px solid #4c4a48;*/
+
+}
+
+#page-footer{
+	background-color:#4c4a48;
+	height:70px;
+}
+
+#page-intro-header{
+	/*background-color:red;*/
+	height:150px;
+	margin-bottom: 10px;
+}
+
+#page-intro-fullheader{
+	font-family: 'Lato Bold';
+	/*background-color:blue;*/
+	margin-bottom :10px;
+}
+
+
+
+#page-intro-subheader{
+	/*background-color:#343499;*/
+}
+
+#page-intro-display{
+	/*background-color:green;*/
+	padding-left:60px;
+}
+
+.image{
+	margin-right:25px;
+	margin-left: 25px;
+}
+
+
+
