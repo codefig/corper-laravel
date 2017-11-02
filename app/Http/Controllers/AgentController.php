@@ -43,6 +43,15 @@ class AgentController extends Controller {
 		return redirect()->back();
 	}
 
+	public function viewReviews(Request $request) {
+		$my_id = Auth::id();
+		$my_corpers = User::where('agent_id', $my_id)->get();
+		return view('agent.viewreview', compact('my_corpers'));
+	}
+
+	public function showReviews(Request $request) {
+		return view('agent.showreviews');
+	}
 	public function showCorpers(Request $reques) {
 		$agent_id = Auth::id();
 		$users = User::where('agent_id', $agent_id)->get();

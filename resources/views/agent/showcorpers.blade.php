@@ -229,7 +229,7 @@
         </li>
         <li class="breadcrumb-item active">Cards</li>
       </ol>
-      <h1>Cards</h1>
+      <h1>Mentees</h1>
       <hr>
       <!-- Icon Cards-->
       <div class="row">

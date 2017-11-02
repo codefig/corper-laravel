@@ -45,6 +45,9 @@ Route::prefix('/agent')->group(function () {
 	Route::get('/home', 'AgentController@showHome')->name('agent.home');
 	Route::get('/makereview', 'AgentController@makeReview')->name('agent.makereview');
 	Route::post('/makereview', 'AgentController@submitReview')->name('agent.makereview.submit');
+
+	Route::get('/viewreviews', 'AgentController@viewReviews')->name('agent.viewreviews');
+	Route::post('/showreviews', 'AgentController@showReviews')->name('agent.viewreviews.submit');
 	Route::get('/showcorpers', 'AgentController@showCorpers')->name('agent.showcorpers');
 });
 
