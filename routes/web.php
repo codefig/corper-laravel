@@ -43,6 +43,9 @@ Route::prefix('/agent')->group(function () {
 
 	Route::post('/login/submit', 'Auth\AgentController@submitLogin')->name('agent.login.submit');
 	Route::get('/home', 'AgentController@showHome')->name('agent.home');
+	Route::get('/makereview', 'AgentController@makeReview')->name('agent.makereview');
+	Route::post('/makereview', 'AgentController@submitReview')->name('agent.makereview.submit');
+	Route::get('/showcorpers', 'AgentController@showCorpers')->name('agent.showcorpers');
 });
 
 Route::prefix('/user')->group(function () {

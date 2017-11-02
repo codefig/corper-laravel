@@ -233,69 +233,51 @@
       <hr>
       <!-- Icon Cards-->
       <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-3">
-          <div class="card text-white bg-primary o-hidden h-100">
-            <div class="card-body">
-              <div class="card-body-icon">
-                <i class="fa fa-fw fa-comments"></i>
-              </div>
-              <div class="mr-5">26 New Messages!</div>
-            </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
-              <span class="float-left">View Details</span>
-              <span class="float-right">
-                <i class="fa fa-angle-right"></i>
-              </span>
-            </a>
+
+          <div class="container">
+
+             <div class="table-responsive">
+               <table class="table table-hover">
+                 <thead>
+                   <tr>
+                     <th>S/N</th>
+                     <th>Corper Name </th>
+                     <th>Email </th>
+                     <th>Corper Token </th>
+                     <th>Institution</th>
+                     <th>Department </th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                  @if(count($users) > 0)
+                     @foreach($users as $user)
+
+                         <tr>
+                           <td>1</td>
+                           <td> {{ $user->firstname . " ". $user->lastname }}</td>
+                           <td>{{ $user->email }}</td>
+                           <td>{{ $user->corper_token }}</td>
+                           <td>{{ $user->institution }}</td>
+                           <td>{{ $user->department }}</td>
+                         </tr>
+
+                     @endforeach
+                  @endif
+                 </tbody>
+               </table>
+
+               @if(count($users) == 0)
+                  <label class="alert alert-danger">Sorry You have no corper posted under you yet </label>
+               @endif
+             </div>
+
+              @if(Session::has('success_message'))
+                            <div class='alert alert-success'>
+                                <span> {{ Session::get('success_message') }}</span>
+                            </div>
+              @endif
           </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-          <div class="card text-white bg-warning o-hidden h-100">
-            <div class="card-body">
-              <div class="card-body-icon">
-                <i class="fa fa-fw fa-list"></i>
-              </div>
-              <div class="mr-5">11 New Tasks!</div>
-            </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
-              <span class="float-left">View Details</span>
-              <span class="float-right">
-                <i class="fa fa-angle-right"></i>
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-          <div class="card text-white bg-success o-hidden h-100">
-            <div class="card-body">
-              <div class="card-body-icon">
-                <i class="fa fa-fw fa-shopping-cart"></i>
-              </div>
-              <div class="mr-5">123 New Orders!</div>
-            </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
-              <span class="float-left">View Details</span>
-              <span class="float-right">
-                <i class="fa fa-angle-right"></i>
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-          <div class="card text-white bg-danger o-hidden h-100">
-            <div class="card-body">
-              <div class="card-body-icon">
-                <i class="fa fa-fw fa-support"></i>
-              </div>
-              <div class="mr-5">13 New Tickets!</div>
-            </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
-              <span class="float-left">View Details</span>
-              <span class="float-right">
-                <i class="fa fa-angle-right"></i>
-              </span>
-            </a>
-          </div>
+
         </div>
       </div>
     </div>
