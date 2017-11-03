@@ -128,7 +128,7 @@
 			</div>
 
 			<div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" >
-				<h2>KANO COWS ON SERVICE </h2>
+				<h2>PROMOTING A FRUITFUL YOUTH SERVICE EXPERIENCE </h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat
 				libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque
 				libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque
@@ -152,7 +152,7 @@
 			</div>
 			<div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
 				<img src="img/service-5.png" class="img-responsive"/>
-				<h3>NA WHO SLAP THE CORPER</h3>
+				<h3>LATEST BATCH ARRIVAL AT CAMP GROUND</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat
 				libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque
 				libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque
@@ -162,7 +162,7 @@
 
 			<div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
 				<img src="img/corper-3.png" class="img-responsive"/>
-				<h3>NO BE ME OH</h3>
+				<h3>HOW TO GET THE BEST OF YOUR SERVICE</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat
 				libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque
 				libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque
@@ -172,7 +172,7 @@
 
 			<div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
 				<img src="img/corper-2.jpg" class="img-responsive"/>
-				<h3>BUHARI DEY CHOP AMALA</h3>
+				<h3>GETTING USEFUL BEFORE VENTURING INTO LABOUR MARKET</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat
 				libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque
 				libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque
@@ -186,7 +186,7 @@
         <div class="container">
             <div class="center wow fadeInDown">
                 <h2>Our Partners</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <p>We plan to make you have a fruitful youth service experience, by linking you up with professionals in your various areas of discipline. to groom you before entering the labour market</p>
             </div>
 
             <div class="partners">
@@ -226,7 +226,7 @@
                                 Licensing information: https://bootstrapmade.com/license/
                                 Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Company
                             -->
-                            <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+
                         </div>
 					</div>
 				</div>
