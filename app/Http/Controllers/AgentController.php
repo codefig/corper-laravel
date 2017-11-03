@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class AgentController extends Controller {
-	////
-	///
+
 	public function __construct() {
 		$this->middleware('auth:agent');
 	}
@@ -27,11 +26,11 @@ class AgentController extends Controller {
 		$my_id = Auth::id();
 		$my_corpers = User::where('agent_id', $my_id)->get();
 		return view('agent.makereview', compact('my_corpers'));
-		// return $request->all();
+
 	}
 
 	public function submitReview(Request $request) {
-		// return "this is submit function";
+
 		$this->validate($request, [
 			'user_id' => 'required',
 			'month' => 'required',
@@ -50,13 +49,11 @@ class AgentController extends Controller {
 	}
 
 	public function showReviews(Request $request) {
-		// return $request->all();
+
 		$month = "$request->month";
-		// return $month;
+
 		$review = Review::whereRaw('user_id=' . $request->user_id . " and month='" . $month . "'")->get()->first();
 		return view('agent.showreviews', compact('review'));
-
-		// return view('agent.showreviews');
 	}
 	public function showCorpers(Request $reques) {
 		$agent_id = Auth::id();
