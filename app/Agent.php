@@ -6,6 +6,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Agent extends Authenticatable {
 	//
 	//
+	//
+	public $timestamps = false;
+
 	protected $fillable = [
 		'email', 'password', 'state_id', 'discipline', 'address', 'agent_name', 'company_name', 'picture_id', 'industrial_token'];
 

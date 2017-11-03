@@ -349,3 +349,7 @@ footer.sticky-footer {
 #messagesDropdown, #alertsDropdown{
   visibility: hidden !important;
 }
+
+.form-inline{
+  visibility: hidden;
+}

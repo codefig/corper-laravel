@@ -50,7 +50,13 @@ class AgentController extends Controller {
 	}
 
 	public function showReviews(Request $request) {
-		return view('agent.showreviews');
+		// return $request->all();
+		$month = "$request->month";
+		// return $month;
+		$review = Review::whereRaw('user_id=' . $request->user_id . " and month='" . $month . "'")->get()->first();
+		return view('agent.showreviews', compact('review'));
+
+		// return view('agent.showreviews');
 	}
 	public function showCorpers(Request $reques) {
 		$agent_id = Auth::id();
