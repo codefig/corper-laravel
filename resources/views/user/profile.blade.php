@@ -72,18 +72,23 @@
           <img id="user-profile" src="{{ URL::to($user->photo->server_filename) }}" class="img-responsive img-rounded" alt="Image">
         </div>
 
-        <div id="linksPane">
+       <div id="linksPane">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="{{ route('user.home') }}"><span class="fa fa-navicon"></span> Home</a></li>
 
-              <li><a href=""><span class='fa fa-book'></span> Courses</a></li>
+              <li><a href=""><span class='fa fa-book'></span> Home </a></li>
+              <li><a href="{{ route('user.profile') }}"><span class='fa fa-book'></span> Profile
+                @if ($user->is_updated==0)
+                  <span class="label label-danger">Not Updated </span>
+                @else
+                  <span class="label label-primary">Updated </span>
+                @endif
+              </a></li>
 
-              <li><a href=""><span class='fa fa-book'></span> Course Materials</a></li>
+              <li><a href="{{ route('user.status') }}"><span class='fa fa-book'></span> View Posting Status</a></li>
 
-             <li><a href=""><span class="fa fa-file-text"></span> Assignments</a></li>
+             <li><a href=""><span class="fa fa-file-text"></span> Extra Information</a></li>
 
                <li><a href=""><span class="fa fa-upload"></span> My submissions</a></li>
-
           </ul>
         </div>
     </div>

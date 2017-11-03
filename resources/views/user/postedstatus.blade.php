@@ -72,7 +72,7 @@
          <center> <img id="user-profile" src="{{ URL::to($user->photo->server_filename) }}" class="img-responsive img-rounded" alt="Image"></center>
         </div>
 
-        <div id="linksPane">
+       <div id="linksPane">
             <ul class="nav nav-pills nav-stacked">
 
               <li><a href=""><span class='fa fa-book'></span> Home </a></li>
@@ -84,12 +84,11 @@
                 @endif
               </a></li>
 
-              <li><a href=""><span class='fa fa-book'></span> View Posting Status</a></li>
+              <li><a href="{{ route('user.status') }}"><span class='fa fa-book'></span> View Posting Status</a></li>
 
              <li><a href=""><span class="fa fa-file-text"></span> Extra Information</a></li>
 
                <li><a href=""><span class="fa fa-upload"></span> My submissions</a></li>
-
           </ul>
         </div>
     </div>
