@@ -89,7 +89,6 @@
              <li><a href=""><span class="fa fa-file-text"></span> Extra Information</a></li>
 
                <li><a href=""><span class="fa fa-upload"></span> My submissions</a></li>
-
           </ul>
         </div>
     </div>
