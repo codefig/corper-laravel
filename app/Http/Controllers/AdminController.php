@@ -152,8 +152,9 @@ class AdminController extends Controller {
 	}
 
 	public function showReviews(Request $request) {
+		$month = $request->month;
 		$reviews = Review::whereRaw('agent_id=' . $request->agent_id . " and month='" . $request->month . "'")->get();
-		return view('admin.showreviews', compact('reviews'));
+		return view('admin.showreviews', compact('reviews', 'month'));
 	}
 
 }

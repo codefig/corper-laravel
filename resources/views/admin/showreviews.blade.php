@@ -374,7 +374,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">All Agents</h1>
+                    <h1 class="page-header">All Reviews for {{ $month }}</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -383,14 +383,28 @@
 
                    <div class="container">
                        <div class="table-responsive">
-                          <div class="form-group">
-                              <label>Name </label>
-                              <span class="fa fa-user"></span>
-                              <span> Alaran Moshood </span>
-                              <br/>
-                              <label> Rating </label>
-                              <span class="fa fa-thumbs-up"></span> Excellent
-                          </div>
+
+                        @if(count($reviews) > 0)
+                            @foreach($reviews as $review)
+
+                                  <div class="form-group">
+                                      <label>Name </label>
+                                      <span class="fa fa-user"></span>
+                                      <span>{{ $review->user->firstname . " " . $review->user->lastname }}</span>
+                                      <br/>
+                                      <label> {{ $review->rating }}</label>
+                                      <span class="fa fa-thumbs-up"></span> Excellent
+                                      <br/>
+                                      <textarea style="width:300px;height:200px;" cols="5" row="5" readonly="true" class="form-control">{{ $review->comments }}</textarea>
+
+                                      <strong><hr></strong>
+                                  </div>
+                            @endforeach
+                        @else
+                            <div class="alert alert-danger"><strong>Sorry The agent made no review for this month</strong></div>
+                        @endif
+
+
                    </div>
 
 
