@@ -268,7 +268,7 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search by corper Token-ID...">
+                                <input id="searchInput" type="text" class="form-control" placeholder="Search by corper Token-ID...">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
