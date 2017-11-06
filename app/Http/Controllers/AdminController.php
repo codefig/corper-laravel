@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Agent;
 use App\Posting;
+use App\Review;
 use App\State;
 use App\User;
 use Auth;
@@ -137,6 +138,22 @@ class AdminController extends Controller {
 		$user = User::find($id);
 
 		return view('admin.viewcorperprofile', compact('user'));
+	}
+
+	public function showMentees(Request $request, $agentid) {
+		$posted_corpers = User::where('agent_id', $agentid)->get();
+		return view('admin.showmentees', compact('posted_corpers'));
+	}
+
+	public function viewReviews(Request $request) {
+		// return "this is the view review function";
+		$agents = Agent::all();
+		return view('admin.viewreview', compact('agents'));
+	}
+
+	public function showReviews(Request $request) {
+		$reviews = Review::whereRaw('agent_id=' . $request->agent_id . " and month='" . $request->month . "'")->get();
+		return view('admin.showreviews', compact('reviews'));
 	}
 
 }

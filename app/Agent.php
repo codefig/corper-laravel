@@ -4,9 +4,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Agent extends Authenticatable {
-	//
-	//
-	//
+
 	public $timestamps = false;
 
 	protected $fillable = [
@@ -19,4 +17,9 @@ class Agent extends Authenticatable {
 	public function users() {
 		return $this->belongsToMany('App\User', 'agent_id');
 	}
+
+	public function reviews() {
+		return $this->belongsToMany('App\Review', 'agent_id');
+	}
+
 }

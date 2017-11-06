@@ -394,6 +394,7 @@
                                        <th>Email</th>
                                        <th>Occupation</th>
                                        <th>Agent Token</th>
+                                       <th>Action </th>
                                    </tr>
                                </thead>
                                <tbody>
@@ -411,6 +412,7 @@
                                            <td>{{ $agent->email }}</td>
                                            <td>{{ $agent->discipline }}</td>
                                            <td>{{ $agent->industrial_token }}</td>
+                                           <td><a href="{{ route('admin.agent.mentees', $agent->id) }}" class="btn btn-primary">View Mentees </a></td>
 
                                        </tr>
                                     @endforeach

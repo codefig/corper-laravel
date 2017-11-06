@@ -25,8 +25,11 @@ Route::prefix('/admin')->group(function () {
 	//admin agent routes
 	Route::get('/agent/add', 'AdminController@addAgent')->name('admin.agent.add');
 	Route::post('/agent/add/submit', 'AdminController@agentSubmit')->name('admin.agent.submit');
-
 	Route::get('/agent/view/all', 'AdminController@viewAgents')->name('admin.agent.viewall');
+	Route::get('/agent/mentees/{agentid}', 'AdminController@showMentees')->name('admin.agent.mentees');
+
+	Route::get('/agent/viewreviews', 'AdminController@viewReviews')->name('admin.agent.viewreviews');
+	Route::post('/agent/showreviews', 'AdminController@showReviews')->name('admin.agent.showreviews');
 
 	//admin corpers view
 	Route::get('/unposted/view', 'AdminController@viewUnPostedCorpers')->name('admin.unposted.view');
