@@ -362,8 +362,10 @@
                     </thead>
                     <tbody>
 
+
                         @if(count($posted_corpers) > 0)
                             <span style="visibility: hidden">{{ $serial_no = 1 }} </span>
+                             {{  "bigger man" }}
                             @foreach($posted_corpers as $corper)
 
                                 <tr>
