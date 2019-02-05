@@ -59,7 +59,7 @@
 
 
 @section('firstLink')
-  <a href="" id="studentLogin"><span class='fa fa-user-o'></span> Logout</a>
+  <a href="{{ route('user.logout') }}" id="studentLogin"><span class='fa fa-user-o'></span> Logout</a>
 @endsection
 
 @section('pageBody')

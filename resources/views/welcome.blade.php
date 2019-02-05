@@ -13,12 +13,7 @@
 	<link rel="stylesheet" href="{{ URL::to('css/animate.css') }}">
 	<link href="{{ URL::to('css/prettyPhoto.css') }}" rel="stylesheet">
 	<link href="{{ URL::to('css/style.css') }}" rel="stylesheet" />
-    <!-- =======================================================
-        Theme Name: Company
-        Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
-        Author: BootstrapMade
-        Author URL: https://bootstrapmade.com
-    ======================================================= -->
+
   </head>
   <body>
 	<header>
