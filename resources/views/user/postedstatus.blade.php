@@ -166,12 +166,12 @@
 
             @if ($user->is_applied == 1 && $user->is_posted==0)
               {{-- profile updated and applied before --}}
-              <span class="label label-danger">Note </span><p>Your posting Application has been sent. please await your postage information </p>
+              <span class="label label-danger">Note </span><p>Your posting Application has been sent. please await your Company Attachment information </p>
 
             @elseif($user->is_applied==1 && $user->is_posted==1)
                <span class="label label-success">Successfully Posted</span>
-               <p> Your Posted Station is: {{ $user->postedAgent()->company_name }}</p>
-               <p>Administrator : {{ $user->postedAgent()->agent_name }}</p>
+               <p> Your Attached Station is: {{ $user->postedAgent()->company_name }}</p>
+               <p>Atachment Officer : {{ $user->postedAgent()->agent_name }}</p>
                <p>Address: {{ $user->postedAgent()->address }}</p>
             @else
               {{-- profile updated but hasnt applied before --}}
