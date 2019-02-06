@@ -76,13 +76,15 @@ class AdminController extends Controller {
 
 	public function viewUnpostedCorpers(Request $request) {
 		// return "list of unposted corpers ";
-		$unposted_corpers = User::where('is_posted', 0)->paginate(7);
-		if (count($unposted_corpers) < 0) {
-			Session::flash("success_message", 'Sorry there are no unposted corpers for this state !');
-			return redirect()->back();
-		} else {
-
+		$unposted_corpers = User::where('is_posted', 0)->where(function ($q) {
+			$q->where('is_updated', 1);
+			$q->where('is_applied', 1);
+		})->get();
+		if (count($unposted_corpers) > 0) {
 			return view('admin.showunposted', compact('unposted_corpers'));
+		} else {
+			Session::flash("success_message", 'Sorry there are no unposted corpers with updated profile for yet !');
+			return redirect()->back();
 		}
 
 	}
