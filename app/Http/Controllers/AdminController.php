@@ -129,7 +129,14 @@ class AdminController extends Controller {
 		*/
 
 		$posted_corpers = User::where('is_posted', 1)->get();
-		return view('admin.showposted', compact('posted_corpers'));
+		// echo count($posted_corpers);
+		//
+		if (count($posted_corpers) > 0) {
+			return view('admin.showposted', compact('posted_corpers'));
+		} else {
+			Session::flash('success_message', "Sorry there are no list of posted corpers yet ");
+			return redirect()->back();
+		}
 
 	}
 
