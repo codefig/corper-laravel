@@ -38,6 +38,8 @@ Route::prefix('/admin')->group(function () {
 	Route::get('/posted/view', 'AdminController@viewPosted')->name('admin.posted.view');
 	Route::get('/corper/profile/view/{id}', 'AdminController@viewCorperProfile')->name('admin.corper.view');
 
+	Route::get('/corper/reviews', 'AdminController@viewReview')->name('admin.showreviews');
+
 });
 
 Route::prefix('/agent')->group(function () {

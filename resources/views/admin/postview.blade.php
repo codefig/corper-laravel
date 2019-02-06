@@ -361,11 +361,11 @@
                         <label> Post Under Agent : </label>
                         <select class='form-control' name="agent_id">
 
-                            {{-- @if(count($agents) > 0)
+                            @if(count($agents) > 0)
                                 @foreach ($agents as $agent)
                                  <option value="{{ $agent->id }}">{{ $agent->agent_name }}</option>
                                 @endforeach
-                            @endif --}}
+                            @endif
                         </select>
                     </div>
 
