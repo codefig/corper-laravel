@@ -148,7 +148,13 @@ class AdminController extends Controller {
 	public function viewReviews(Request $request) {
 		// return "this is the view review function";
 		$agents = Agent::all();
-		return view('admin.viewreview', compact('agents'));
+		if (count($agents) > 0) {
+			return view('admin.viewreview', compact('agents'));
+		} else {
+			Session::flash('success_message', "Sorry there are no added agents yet, pls add agents");
+			return redirect()->back();
+		}
+
 	}
 
 	public function showReviews(Request $request) {
