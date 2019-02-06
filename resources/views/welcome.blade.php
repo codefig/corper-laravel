@@ -35,8 +35,9 @@
 					<div class="navbar-collapse collapse">
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="index.html" class="active">Home</a></li>
+
 								<li role="presentation"><a href="{{ route('agent.login') }}">Agents Login</a></li>
+								<li role="presentation"><a href="{{ route('admin.login') }}" class="active">Admin Login</a></li>
 								<li role="presentation"><a href="" id="signUpBtn">Sign Up</a></li>
 								<li role="presentation"><a href="{{ route('user.login') }}">Login</a></li>
 							</ul>
